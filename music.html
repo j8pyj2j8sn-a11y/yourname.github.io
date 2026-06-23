@@ -1,1 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Troll Tunes Music</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<div class="player-container">
+
+    <img id="albumCover" src="album/cover1.JPG">
+
+    <h2 id="songTitle">Song 1</h2>
+
+    <p class="artist">Troll Tunes</p>
+
+    <audio id="player" controls></audio>
+
+    <div class="controls">
+        <button onclick="previousSong()">⏮</button>
+        <button onclick="player.play()">▶</button>
+        <button onclick="nextSong()">⏭</button>
+    </div>
+
+    <a id="downloadBtn" download>
+        ⬇ Download
+    </a>
+
+</div>
+
+<script>
+
+const songs = [
+{
+ title:"Song 1",
+ audio:"Songs/song1.mp3",
+ cover:"album/cover1.JPG"
+},
+{
+ title:"Song 2",
+ audio:"Songs/song2.mp3",
+ cover:"album/cover2.JPG"
+}
+];
+
+let currentSong = 0;
+
+const player = document.getElementById("player");
+const cover = document.getElementById("albumCover");
+const title = document.getElementById("songTitle");
+
+function loadSong(index){
+
+    title.innerText = songs[index].title;
+
+    cover.src = songs[index].cover;
+
+    player.src = songs[index].audio;
+
+    document.getElementById("downloadBtn").href =
+    songs[index].audio;
+
+    updateBackground(index);
+}
+
+function updateBackground(index){
+
+    const colors = [
+        "#0f172a",
+        "#7f1d1d"
+    ];
+
+    document.body.style.background =
+    `linear-gradient(
+      135deg,
+      ${colors[index]},
+      #000
+    )`;
+}
+
+function nextSong(){
+
+    currentSong++;
+
+    if(currentSong >= songs.length){
+        currentSong = 0;
+    }
+
+    loadSong(currentSong);
+}
+
+function previousSong(){
+
+    currentSong--;
+
+    if(currentSong < 0){
+        currentSong = songs.length - 1;
+    }
+
+    loadSong(currentSong);
+}
+
+player.addEventListener("ended", () => {
+
+    nextSong();
+
+    player.play();
+
+});
+
+loadSong(0);
+
+</script>
+
+</body>
+</html>
