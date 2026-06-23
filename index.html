@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>TROLL TUNES</title>
 
 <style>
@@ -12,13 +11,13 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+font-family:Segoe UI,sans-serif;
 }
 
 body{
-background:#000;
-color:#fff;
-overflow-x:hidden;
+background:#465346;
+color:#f5f5f5;
+min-height:100vh;
 }
 
 /* MENU */
@@ -30,29 +29,24 @@ left:20px;
 width:50px;
 height:50px;
 border:none;
-border-radius:14px;
 background:#111;
 color:#fff;
 font-size:24px;
+border-radius:12px;
 cursor:pointer;
 z-index:1001;
-border:1px solid rgba(255,255,255,.1);
-}
-
-.menu-btn:hover{
-box-shadow:0 0 15px #00ffff;
 }
 
 /* SIDEBAR */
 
 .sidebar{
 position:fixed;
-top:0;
 left:-260px;
+top:0;
 width:260px;
 height:100%;
-background:#050505;
-border-right:1px solid rgba(255,255,255,.08);
+background:#1b211b;
+border-right:4px solid #0f0f0f;
 padding:30px;
 transition:.3s;
 z-index:1000;
@@ -63,9 +57,8 @@ left:0;
 }
 
 .logo{
-font-size:28px;
+font-size:30px;
 font-weight:700;
-color:#00ffff;
 margin-bottom:40px;
 }
 
@@ -73,25 +66,42 @@ margin-bottom:40px;
 list-style:none;
 }
 
-.sidebar ul li{
-margin-bottom:25px;
+.sidebar li{
+margin-bottom:20px;
 }
 
-.sidebar ul li a{
+.sidebar a{
+color:white;
 text-decoration:none;
-color:#d1d5db;
 font-size:18px;
-transition:.3s;
-}
-
-.sidebar ul li a:hover{
-color:#00ffff;
 }
 
 /* MAIN */
 
 .main{
-padding:90px 25px 40px;
+padding:90px 25px;
+max-width:1300px;
+margin:auto;
+}
+
+/* HERO */
+
+.hero{
+background:#2c342d;
+border:10px solid #0e0e0e;
+border-radius:35px;
+padding:60px;
+margin-bottom:40px;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+opacity:.9;
 }
 
 /* SEARCH */
@@ -99,166 +109,80 @@ padding:90px 25px 40px;
 .search{
 width:100%;
 padding:16px;
-border:none;
-outline:none;
-border-radius:18px;
-background:#111;
-color:#fff;
-font-size:16px;
 margin-bottom:30px;
-border:1px solid rgba(255,255,255,.08);
-}
-
-/* HERO */
-
-.hero{
-background:linear-gradient(135deg,#0d0d0d,#161616);
-border-radius:30px;
-padding:60px 40px;
-margin-bottom:40px;
-border:1px solid rgba(255,255,255,.08);
-}
-
-.hero h1{
-font-size:48px;
-margin-bottom:10px;
-}
-
-.hero p{
-color:#bdbdbd;
-}
-
-/* TITLE */
-
-.section-title{
-font-size:30px;
-margin-bottom:25px;
+border:none;
+border-radius:14px;
+background:#222;
+color:white;
+font-size:16px;
 }
 
 /* GRID */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
 gap:25px;
 }
 
 /* CARD */
 
 .card{
-position:relative;
-
-background:rgba(255,255,255,.04);
-
+background:#2c342d;
+border:8px solid #0f0f0f;
 border-radius:30px;
-
 padding:25px;
-
-overflow:hidden;
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.08);
-
-transition:.4s;
-}
-
-.card::before{
-content:"";
-position:absolute;
-inset:-2px;
-border-radius:32px;
-
-background:linear-gradient(
-135deg,
-#00ffff,
-#7c3aed,
-#00ffff
-);
-
-opacity:.25;
-
-filter:blur(25px);
-
-z-index:-1;
-}
-
-.card:hover{
-transform:translateY(-8px);
-
-box-shadow:
-0 0 15px rgba(0,255,255,.4),
-0 0 40px rgba(124,58,237,.3);
+box-shadow:0 20px 40px rgba(0,0,0,.25);
 }
 
 .card h3{
-margin-bottom:18px;
-line-height:1.5;
+font-size:28px;
+margin-bottom:20px;
+color:white;
 }
 
-/* AUDIO */
+/* PLAYER AREA */
+
+.player-box{
+background:#1c231d;
+border:4px solid #111;
+border-radius:18px;
+padding:15px;
+margin-bottom:20px;
+}
 
 audio{
 width:100%;
-margin-bottom:18px;
 }
 
 /* BUTTON */
 
 .download-btn{
 display:inline-block;
-
-padding:12px 22px;
-
-text-decoration:none;
-
-background:linear-gradient(
-135deg,
-#16a34a,
-#22c55e
-);
-
-color:#fff;
-
+padding:14px 26px;
+background:white;
+color:#111;
 font-weight:700;
-
-border-radius:15px;
-
-transition:.3s;
-}
-
-.download-btn:hover{
-box-shadow:
-0 0 15px #22c55e,
-0 0 30px #22c55e;
+text-decoration:none;
+border-radius:12px;
 }
 
 /* FOOTER */
 
 footer{
-padding:50px 0 20px;
 text-align:center;
-color:#777;
+padding:50px 0;
+opacity:.7;
 }
-
-/* MOBILE */
 
 @media(max-width:768px){
 
 .hero{
-padding:40px 25px;
+padding:35px;
 }
 
 .hero h1{
-font-size:34px;
-}
-
-.section-title{
-font-size:24px;
-}
-
-.grid{
-grid-template-columns:1fr;
+font-size:38px;
 }
 
 }
@@ -278,7 +202,6 @@ grid-template-columns:1fr;
 <li><a href="#">Trending</a></li>
 <li><a href="#">Dialogues</a></li>
 <li><a href="#">Downloads</a></li>
-<li><a href="#">Favorites</a></li>
 </ul>
 
 </div>
@@ -294,100 +217,44 @@ placeholder="Search dialogues..."
 
 <div class="hero">
 <h1>TROLL TUNES</h1>
-<p>Download your favorite Malayalam troll dialogues and meme sounds.</p>
+<p>Premium Malayalam Troll Dialogues Collection</p>
 </div>
-
-<h2 class="section-title">Popular Dialogues</h2>
 
 <div class="grid">
 
 <div class="card">
+
 <h3>ഉന്നം പിഴക്കരുത്</h3>
+
+<div class="player-box">
 <audio controls>
-<source src="Unnampizhakkarith.m4a">
+<source src="Unnampizhakkarith.m4a" type="audio/mp4">
 </audio>
-<a class="download-btn" href="Unnampizhakkarith.m4a" download>Download</a>
+</div>
+
+<a href="Unnampizhakkarith.m4a" class="download-btn" download>
+Download
+</a>
+
 </div>
 
 <div class="card">
+
 <h3>എടാ ബാലകൃഷ്ണാ</h3>
+
+<div class="player-box">
 <audio controls>
-<source src="Edabalakrishna.m4a">
+<source src="Edabalakrishna.m4a" type="audio/mp4">
 </audio>
-<a class="download-btn" href="Edabalakrishna.m4a" download>Download</a>
 </div>
 
-<div class="card">
-<h3>എടാ നാറി നിനക്ക് നാണമുണ്ടോ?</h3>
-<audio controls>
-<source src="song3.m4a">
-</audio>
-<a class="download-btn" href="song3.m4a" download>Download</a>
+<a href="Edabalakrishna.m4a" class="download-btn" download>
+Download
+</a>
+
 </div>
 
-<div class="card">
-<h3>സോറി ആളുമാറി</h3>
-<audio controls>
-<source src="Sorryaalumari.m4a">
-</audio>
-<a class="download-btn" href="Sorryaalumari.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>മിണ്ടാതിരോയെടാ പട്ടി</h3>
-<audio controls>
-<source src="Mindathiriyedapatti.m4a">
-</audio>
-<a class="download-btn" href="Mindathiriyedapatti.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>ഗ്രഹണിയും ആസ്മയും</h3>
-<audio controls>
-<source src="Grahani.m4a">
-</audio>
-<a class="download-btn" href="Grahani.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>പിടിക്കവനെ</h3>
-<audio controls>
-<source src="Pidikkavane.m4a">
-</audio>
-<a class="download-btn" href="Pidikkavane.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>സഖാക്കളെ, കേരള ഫയർ ഫോഴ്സിനും</h3>
-<audio controls>
-<source src="Sakhakkale.m4a">
-</audio>
-<a class="download-btn" href="Sakhakkale.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>ഒരു മൂർഖനെയാണ് നീ നോവിച്ചു വിട്ടത്</h3>
-<audio controls>
-<source src="Moorkhan.m4a">
-</audio>
-<a class="download-btn" href="Moorkhan.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>ഇതിപ്പോ മരപ്പട്ടിയും അല്ല</h3>
-<audio controls>
-<source src="Marappatti.m4a">
-</audio>
-<a class="download-btn" href="Marappatti.m4a" download>Download</a>
-</div>
-
-<div class="card">
-<h3>എന്താത്, തമ്പുരാനറിയാ...</h3>
-<audio controls>
-<source src="Enthathu.m4a">
-</audio>
-<a class="download-btn" href="Enthathu.m4a" download>Download</a>
-</div>
+<!-- DUPLICATE THIS CARD FOR YOUR REMAINING AUDIO FILES -->
 
 </div>
 
@@ -399,18 +266,17 @@ placeholder="Search dialogues..."
 
 <script>
 
-const menuBtn = document.getElementById("menuBtn");
-const sidebar = document.getElementById("sidebar");
+const menuBtn=document.getElementById("menuBtn");
+const sidebar=document.getElementById("sidebar");
 
-menuBtn.addEventListener("click", () => {
+menuBtn.onclick=()=>{
 sidebar.classList.toggle("active");
-});
+};
 
 document.addEventListener("click",(e)=>{
 
 if(
-!sidebar.contains(e.target)
-&&
+!sidebar.contains(e.target) &&
 !menuBtn.contains(e.target)
 ){
 sidebar.classList.remove("active");
@@ -418,20 +284,18 @@ sidebar.classList.remove("active");
 
 });
 
-const searchBox = document.getElementById("searchBox");
+const searchBox=document.getElementById("searchBox");
 
 searchBox.addEventListener("keyup",function(){
 
-let value=this.value.toLowerCase();
+const value=this.value.toLowerCase();
 
 document.querySelectorAll(".card").forEach(card=>{
 
 card.style.display=
 card.innerText.toLowerCase().includes(value)
-?
-"block"
-:
-"none";
+? "block"
+: "none";
 
 });
 
