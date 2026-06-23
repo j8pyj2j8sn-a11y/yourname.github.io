@@ -14,12 +14,19 @@ padding:0;
 box-sizing:border-box;
 font-family:Segoe UI,sans-serif;
 }
+    
 .hero{
     height:350px;
     border:12px solid #000;
     border-radius:40px;
 
-    background-image:url('./banner.jpg');
+    background-image:
+    linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    ),
+    url("https://j8pyj2j8sn-a11y.github.io/banner.jpg");
+
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
@@ -28,8 +35,6 @@ font-family:Segoe UI,sans-serif;
     justify-content:center;
     align-items:center;
     text-align:center;
-
-    margin:30px 0;
 }
 .hero-content h1 {
     font-size: 5rem;
