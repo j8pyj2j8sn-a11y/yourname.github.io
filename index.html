@@ -85,6 +85,31 @@ padding:90px 25px;
 max-width:1300px;
 margin:auto;
 }
+    <section id="musicSection" style="display:none;">
+
+    <div class="player-container">
+
+        <img id="albumCover" src="album/cover1.JPG">
+
+        <h2 id="songTitle">Song 1</h2>
+
+        <p class="artist">Troll Tunes</p>
+
+        <audio id="player" controls></audio>
+
+        <div class="controls">
+            <button onclick="previousSong()">⏮</button>
+            <button onclick="player.play()">▶</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+
+        <a id="downloadBtn" download>
+            ⬇ Download
+        </a>
+
+    </div>
+
+</section>
     
 /* HERO */
 
