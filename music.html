@@ -1,82 +1,252 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Troll Tunes Music</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troll Tunes Music Player</title>
 
 <style>
 
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
 body{
-    margin:0;
-    font-family:Arial;
-    background:#111;
-    color:white;
-    text-align:center;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+radial-gradient(circle at top,
+#5b1a5b 0%,
+#220022 45%,
+#000000 100%);
+color:white;
 }
 
-.music-container{
-    max-width:500px;
-    margin:auto;
-    padding:30px;
+.player-wrapper{
+width:100%;
+max-width:900px;
+padding:20px;
+text-align:center;
 }
 
-#albumCover{
-    width:300px;
-    border-radius:15px;
-    margin-bottom:20px;
+.spotify-logo{
+font-size:28px;
+font-weight:bold;
+margin-bottom:40px;
+opacity:.8;
 }
 
-audio{
-    width:100%;
-    margin:20px 0;
+.album-container{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-bottom:40px;
+perspective:1000px;
 }
 
-button{
-    padding:12px 20px;
-    margin:10px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
+.album-cover{
+width:320px;
+height:320px;
+border-radius:30px;
+overflow:hidden;
+box-shadow:
+0 20px 60px rgba(0,0,0,.6),
+0 0 30px rgba(255,255,255,.08);
+}
+
+.album-cover img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.song-title{
+font-size:32px;
+font-weight:700;
+margin-top:25px;
+}
+
+.artist{
+color:#cfcfcf;
+margin-top:8px;
+font-size:18px;
+}
+
+.controls{
+margin-top:30px;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:25px;
+}
+
+.controls button{
+background:rgba(255,255,255,.1);
+border:none;
+color:white;
+font-size:24px;
+width:60px;
+height:60px;
+border-radius:50%;
+cursor:pointer;
+backdrop-filter:blur(10px);
+}
+
+.controls button:hover{
+background:rgba(255,255,255,.2);
+}
+
+.progress-container{
+width:100%;
+margin-top:35px;
+}
+
+#progress{
+width:100%;
+cursor:pointer;
 }
 
 .download-btn{
-    display:inline-block;
-    margin-top:20px;
-    padding:12px 20px;
-    background:#00cc66;
-    color:white;
-    text-decoration:none;
-    border-radius:8px;
+display:inline-block;
+margin-top:30px;
+padding:14px 30px;
+border-radius:40px;
+background:white;
+color:black;
+text-decoration:none;
+font-weight:bold;
+transition:.3s;
+}
+
+.download-btn:hover{
+transform:scale(1.05);
+}
+
+.player-bar{
+margin-top:40px;
+padding:20px;
+border-radius:40px;
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(15px);
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+}
+
+.player-bar img{
+width:55px;
+height:55px;
+border-radius:10px;
+object-fit:cover;
+}
+
+.player-info{
+text-align:left;
+}
+
+.player-info h4{
+font-size:16px;
+}
+
+.player-info p{
+font-size:13px;
+color:#ccc;
+}
+
+audio{
+display:none;
+}
+
+footer{
+position:fixed;
+bottom:20px;
+width:100%;
+text-align:center;
+color:#aaa;
+font-size:14px;
+}
+
+@media(max-width:768px){
+
+.album-cover{
+width:250px;
+height:250px;
+}
+
+.song-title{
+font-size:24px;
+}
+
+.player-bar{
+flex-direction:column;
+}
+
 }
 
 </style>
-
 </head>
-
 <body>
 
-<div class="music-container">
+<div class="player-wrapper">
 
-<img id="albumCover" src="cover1.JPG">
+<div class="spotify-logo">
+TROLL TUNES
+</div>
 
-<h2 id="songTitle">Song 1</h2>
+<div class="album-container">
+<div class="album-cover">
+<img id="cover" src="album/cover1.jpg">
+</div>
+</div>
 
-<p>Troll Tunes</p>
+<h1 id="title" class="song-title">
+Song Name
+</h1>
 
-<audio id="player" controls></audio>
+<p id="artist" class="artist">
+Troll Tunes
+</p>
 
-<br>
+<div class="controls">
+<button onclick="prevSong()">⏮</button>
+<button onclick="togglePlay()">▶</button>
+<button onclick="nextSong()">⏭</button>
+</div>
 
-<button onclick="previousSong()">⏮ Previous</button>
+<div class="progress-container">
+<input type="range" id="progress" value="0">
+</div>
 
-<button onclick="nextSong()">Next ⏭</button>
-
-<br>
-
-<a id="downloadBtn" class="download-btn" download>
-Download Song
+<a id="downloadBtn"
+class="download-btn"
+download>
+⬇ Download MP3
 </a>
 
+<div class="player-bar">
+
+<img id="smallCover" src="album/cover1.jpg">
+
+<div class="player-info">
+<h4 id="barTitle">Song Name</h4>
+<p>Troll Tunes</p>
 </div>
+
+</div>
+
+<audio id="audio"></audio>
+
+</div>
+
+<footer>
+© 2026 TROLL TUNES by RUDY GAMING
+</footer>
 
 <script>
 
@@ -84,44 +254,65 @@ const songs = [
 
 {
 title:"Song 1",
-audio:"song1.mp3",
-cover:"cover1.JPG"
+artist:"Troll Tunes",
+file:"songs/song1.mp3",
+cover:"album/cover1.jpg"
 },
 
 {
 title:"Song 2",
-audio:"song2.mp3",
-cover:"cover2.JPG"
+artist:"Troll Tunes",
+file:"songs/song2.mp3",
+cover:"album/cover2.jpg"
+},
+
+{
+title:"Song 3",
+artist:"Troll Tunes",
+file:"songs/song3.mp3",
+cover:"album/cover3.jpg"
 }
 
 ];
 
-let currentSong = 0;
+let currentSong=0;
 
-const player =
-document.getElementById("player");
-
-const cover =
-document.getElementById("albumCover");
-
-const title =
-document.getElementById("songTitle");
+const audio=document.getElementById("audio");
+const title=document.getElementById("title");
+const artist=document.getElementById("artist");
+const cover=document.getElementById("cover");
+const smallCover=document.getElementById("smallCover");
+const barTitle=document.getElementById("barTitle");
+const progress=document.getElementById("progress");
+const downloadBtn=document.getElementById("downloadBtn");
 
 function loadSong(index){
 
-title.innerText =
-songs[index].title;
+title.textContent=songs[index].title;
+artist.textContent=songs[index].artist;
 
-cover.src =
-songs[index].cover;
+cover.src=songs[index].cover;
+smallCover.src=songs[index].cover;
 
-player.src =
-songs[index].audio;
+barTitle.textContent=songs[index].title;
 
-document.getElementById(
-"downloadBtn"
-).href =
-songs[index].audio;
+audio.src=songs[index].file;
+
+downloadBtn.href=songs[index].file;
+
+}
+
+function togglePlay(){
+
+if(audio.paused){
+
+audio.play();
+
+}else{
+
+audio.pause();
+
+}
 
 }
 
@@ -129,32 +320,46 @@ function nextSong(){
 
 currentSong++;
 
-if(currentSong >= songs.length){
+if(currentSong>=songs.length){
 
-currentSong = 0;
+currentSong=0;
 
 }
 
 loadSong(currentSong);
+audio.play();
 
 }
 
-function previousSong(){
+function prevSong(){
 
 currentSong--;
 
-if(currentSong < 0){
+if(currentSong<0){
 
-currentSong =
-songs.length - 1;
+currentSong=songs.length-1;
 
 }
 
 loadSong(currentSong);
+audio.play();
 
 }
 
-loadSong(0);
+audio.addEventListener("timeupdate",()=>{
+
+progress.value=(audio.currentTime/audio.duration)*100||0;
+
+});
+
+progress.addEventListener("input",()=>{
+
+audio.currentTime=
+(progress.value/100)*audio.duration;
+
+});
+
+loadSong(currentSong);
 
 </script>
 
