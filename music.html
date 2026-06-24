@@ -34,13 +34,13 @@
 const songs = [
 {
  title:"Song 1",
- audio:"song1.mp3",
- cover:"cover1.JPG"
+ audio:"Songs/song1.mp3",
+ cover:"album/cover1.JPG"
 },
 {
  title:"Song 2",
- audio:"song2.mp3",
- cover:"cover2.JPG"
+ audio:"Songs/song2.mp3",
+ cover:"album/cover2.JPG"
 }
 ];
 
@@ -102,13 +102,6 @@ function previousSong(){
 }
 
 player.addEventListener("ended", () => {
-
-    nextSong();
-
-    player.play();
-
-});
-                        player.addEventListener("ended", () => {
 
     nextSong();
 
