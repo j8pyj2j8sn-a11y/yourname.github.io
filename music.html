@@ -156,7 +156,8 @@ margin-top:25px;
 margin-bottom:25px !important;
 }
 
-.artist{
+.artist,
+.song-title{
 display:none;
 }
 
@@ -497,6 +498,73 @@ scale(.75);
 opacity:.35;
 }
 
+.spotify-player{
+
+width:100%;
+margin-top:30px;
+
+padding:18px 25px;
+
+border-radius:35px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(25px);
+-webkit-backdrop-filter:blur(25px);
+
+border:1px solid rgba(255,255,255,.15);
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+gap:15px;
+}
+
+.spotify-player button{
+
+background:none;
+border:none;
+
+color:white;
+
+font-size:26px;
+
+cursor:pointer;
+}
+
+.track-info{
+
+display:flex;
+align-items:center;
+
+gap:12px;
+
+flex:1;
+}
+
+.track-info img{
+
+width:45px;
+height:45px;
+
+border-radius:10px;
+
+object-fit:cover;
+}
+
+.track-info h4{
+
+font-size:14px;
+margin:0;
+}
+
+.track-info p{
+
+font-size:12px;
+opacity:.7;
+}
+
 </style>
 </head>
 <body>
@@ -543,15 +611,30 @@ Song Name
 <p id="artist" class="artist">
 Troll Tunes
 </p>
+    
+ <div class="spotify-player">
 
-<div class="controls">
-<button onclick="prevSong()">❮</button>
+<button onclick="prevSong()">⏮</button>
 
-<button class="play-btn" onclick="togglePlay()" id="playBtn">
-►
+<button onclick="togglePlay()" id="playBtn">
+▶
 </button>
 
-<button onclick="nextSong()">❯</button>
+<button onclick="nextSong()">⏭</button>
+
+<div class="track-info">
+
+<img id="miniCover" src="cover1.JPG">
+
+<div>
+<h4 id="miniTitle">Song Name</h4>
+<p>Troll Tunes</p>
+</div>
+
+</div>
+
+<button>🔊</button>
+
 </div>
 
 <div class="progress-container">
