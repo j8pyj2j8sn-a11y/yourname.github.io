@@ -601,6 +601,15 @@ audio.currentTime=
 (progress.value/100)*audio.duration;
 
 });
+    audio.addEventListener("play",()=>{
+document.getElementById("playBtn").innerHTML="❚❚";
+album.classList.add("playing");
+});
+
+audio.addEventListener("pause",()=>{
+document.getElementById("playBtn").innerHTML="►";
+album.classList.remove("playing");
+});
 
 loadSong(currentSong);
 
