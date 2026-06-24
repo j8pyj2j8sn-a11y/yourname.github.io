@@ -56,11 +56,16 @@ margin-bottom:15px;
 perspective:1000px;
 }
 
-.album-cover{
-width:320px;
-height:320px;
+.album-cover::before{
+content:"";
+position:relative;
+inset:-15px;
 border-radius:50%;
-overflow:hidden;
+background:inherit;
+filter:blur(30px);
+opacity:.7;
+z-index:-1;
+}
 
 box-shadow:
 0 0 25px rgba(0,255,255,.6),
