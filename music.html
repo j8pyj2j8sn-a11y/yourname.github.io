@@ -509,6 +509,11 @@ audio.src = songs[index].file;
 downloadBtn.href = songs[index].file;
 document.body.style.background=gradients[index];
 
+    album.style.boxShadow = `
+0 0 30px ${glowColors[index]},
+0 0 60px ${glowColors[index]},
+0 0 100px ${glowColors[index]}
+`;
 }
 
 const album=document.querySelector(".album-cover");
