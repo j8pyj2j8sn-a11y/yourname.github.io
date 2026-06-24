@@ -457,11 +457,13 @@ const downloadBtn=document.getElementById("downloadBtn");
 
 function loadSong(index){
 
-title.textContent=songs[index].title;
-artist.textContent=songs[index].artist;
-cover.src=songs[index].cover;
-smallCover.src=songs[index].cover;
-downloadBtn.href=songs[index].file;
+title.textContent = songs[index].title;
+artist.textContent = songs[index].artist;
+cover.src = songs[index].cover;
+
+audio.src = songs[index].file;
+
+downloadBtn.href = songs[index].file;
 
 }
 
