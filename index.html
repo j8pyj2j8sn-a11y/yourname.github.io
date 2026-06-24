@@ -14,79 +14,6 @@ box-sizing:border-box;
 font-family:Segoe UI,sans-serif;
 }
 
-    body{
-background:#465346;
-color:#f5f5f5;
-min-height:100vh;
-}
-
-/* MENU */
-
-.menu-btn{
-position:fixed;
-top:20px;
-left:20px;
-width:50px;
-height:50px;
-border:none;
-background:#111;
-color:#fff;
-font-size:24px;
-border-radius:12px;
-cursor:pointer;
-z-index:1001;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-position:fixed;
-left:-260px;
-top:0;
-width:260px;
-height:100%;
-background:#000000;
-border-right:4px solid #fffff0;
-padding:30px;
-transition:.3s;
-z-index:1000;
-}
-
-.sidebar.active{
-left:0;
-}
-
-.logo{
-font-size:30px;
-font-weight:700;
-margin-top:60px;
-margin-bottom:40px;
-}
-
-.sidebar ul{
-list-style:none;
-}
-
-.sidebar li{
-margin-bottom:20px;
-}
-
-.sidebar a{
-color:white;
-text-decoration:none;
-font-size:18px;
-}
-
-/* MAIN */
-
-.main{
-padding:90px 25px;
-max-width:1300px;
-margin:auto;
-}
-
-/* HERO */
-
 .hero{
     height:350px;
     border:12px solid #000;
@@ -145,6 +72,97 @@ margin:auto;
         font-size:1rem;
     }
 }
+
+body{
+background:#465346;
+color:#f5f5f5;
+min-height:100vh;
+}
+
+/* MENU */
+
+.menu-btn{
+position:fixed;
+top:20px;
+left:20px;
+width:50px;
+height:50px;
+border:none;
+background:#111;
+color:#fff;
+font-size:24px;
+border-radius:12px;
+cursor:pointer;
+z-index:1001;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+position:fixed;
+left:-260px;
+top:0;
+width:260px;
+height:100%;
+background:#1b211b;
+border-right:4px solid #0f0f0f;
+padding:30px;
+transition:.3s;
+z-index:1000;
+}
+
+.sidebar.active{
+left:0;
+}
+
+.logo{
+font-size:30px;
+font-weight:700;
+margin-bottom:40px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar li{
+margin-bottom:20px;
+}
+
+.sidebar a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+/* MAIN */
+
+.main{
+padding:90px 25px;
+max-width:1300px;
+margin:auto;
+}
+
+/* HERO */
+
+.hero{
+background:#2c342d;
+border:10px solid #0e0e0e;
+border-radius:35px;
+padding:60px;
+margin-bottom:40px;
+}
+
+.hero h1{
+font-size:60px;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+opacity:.9;
+}
+
 /* SEARCH */
 
 .search{
@@ -234,18 +252,17 @@ font-size:38px;
 
 <button class="menu-btn" id="menuBtn">☰</button>
 
-<div class="sidebar">
-    <div class="logo">TROLL TUNES</div>
+<div class="sidebar" id="sidebar">
 
-    <ul>
-        <li><a href="index.html">Home</a></li>
+<div class="logo">TROLL TUNES</div>
 
-        <li><a href="music.html">Music</a></li>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Trending</a></li>
+<li><a href="#">Dialogues</a></li>
+<li><a href="#">Downloads</a></li>
+</ul>
 
-        <li><a href="nocopyright.html">No Copyright Music</a></li>
-
-        <li><a href="backgroundmusic.html">Background Music</a></li>
-    </ul>
 </div>
 
 <div class="main">
