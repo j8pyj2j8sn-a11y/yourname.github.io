@@ -703,14 +703,15 @@ function loadSong(index){
 title.textContent = songs[index].title;
 artist.textContent = songs[index].artist;
 cover.src = songs[index].cover;
-
+document.getElementById("miniCover").src =
+songs[index].cover;
+document.getElementById("miniTitle").textContent =
+songs[index].title;
 audio.src = songs[index].file;
-
 downloadBtn.href = songs[index].file;
 document.body.style.background=gradients[index];
 localStorage.setItem("currentSong", index);
-
-    album.style.boxShadow = `
+album.style.boxShadow = `
 0 0 18px ${glowColors[index]},
 0 0 35px ${glowColors[index]},
 0 0 60px ${glowColors[index]}
