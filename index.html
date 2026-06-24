@@ -23,58 +23,55 @@ min-height:100vh;
 /* MENU */
 
 .menu-btn{
-position:fixed;
-top:20px;
-left:20px;
-width:50px;
-height:50px;
-border:none;
-background:#111;
-color:#fff;
-font-size:24px;
-border-radius:12px;
-cursor:pointer;
-z-index:1001;
+    position:fixed;
+    top:20px;
+    left:20px;
+    z-index:1001;
+    font-size:28px;
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-/* SIDEBAR */
-
 .sidebar{
-position:fixed;
-left:-260px;
-top:0;
-width:260px;
-height:100%;
-background:#000000;
-border-right:4px solid #fffff0;
-padding:30px;
-transition:.3s;
-z-index:1000;
+    position:fixed;
+    top:0;
+    left:-260px;
+    width:260px;
+    height:100%;
+    background:#000;
+    transition:0.3s;
+    z-index:1000;
+    padding:30px;
 }
 
 .sidebar.active{
-left:0;
+    left:0;
 }
 
 .logo{
-font-size:30px;
-font-weight:700;
-margin-top:60px;
-margin-bottom:40px;
+    color:white;
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:40px;
 }
 
 .sidebar ul{
-list-style:none;
+    list-style:none;
+    padding:0;
 }
 
 .sidebar li{
-margin-bottom:20px;
+    margin-bottom:20px;
 }
 
 .sidebar a{
-color:white;
-text-decoration:none;
-font-size:18px;
+    color:white;
+    text-decoration:none;
+    font-size:22px;
 }
 
 /* MAIN */
