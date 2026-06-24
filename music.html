@@ -389,11 +389,20 @@ TROLL TUNES
 
 <div class="player-bar">
 
-<div class="controls-bar">
+<div class="track-info">
 
-<button class="glass-btn" onclick="prevSong()">
-⏮
-</button>
+<img id="miniCover" src="lunar.JPG">
+
+<div>
+<h4 id="songTitle">Lunar</h4>
+<p>Troll Tunes</p>
+</div>
+
+</div>
+
+<div class="center-controls">
+
+<button class="glass-btn" onclick="prevSong()">⏮</button>
 
 <button
 id="playBtn"
@@ -402,12 +411,21 @@ onclick="togglePlay()">
 ▶
 </button>
 
-<button class="glass-btn" onclick="nextSong()">
-⏭
-</button>
+<button class="glass-btn" onclick="nextSong()">⏭</button>
 
 </div>
 
+<div class="progress-wrap">
+<input type="range" id="progress" value="0">
+</div>
+
+<a id="downloadBtn"
+class="download-btn"
+download>
+Download
+</a>
+
+</div>
 <div class="track-info">
 
 <img
