@@ -19,59 +19,62 @@ background:#465346;
 color:#f5f5f5;
 min-height:100vh;
 }
-   
+
 /* MENU */
 
 .menu-btn{
-    position:fixed;
-    top:20px;
-    left:20px;
-    z-index:1001;
-    font-size:28px;
-    background:#000;
-    color:#fff;
-    border:none;
-    padding:10px 15px;
-    border-radius:10px;
-    cursor:pointer;
+position:fixed;
+top:20px;
+left:20px;
+width:50px;
+height:50px;
+border:none;
+background:#111;
+color:#fff;
+font-size:24px;
+border-radius:12px;
+cursor:pointer;
+z-index:1001;
 }
 
+/* SIDEBAR */
+
 .sidebar{
-    position:fixed;
-    top:0;
-    left:-260px;
-    width:260px;
-    height:100%;
-    background:#000;
-    transition:0.3s;
-    z-index:1000;
-    padding:30px;
+position:fixed;
+left:-260px;
+top:0;
+width:260px;
+height:100%;
+background:#000000;
+border-right:4px solid #fffff0;
+padding:30px;
+transition:.3s;
+z-index:1000;
 }
 
 .sidebar.active{
-    left:0;
+left:0;
 }
 
 .logo{
-    color:white;
-    font-size:30px;
-    font-weight:bold;
-    margin-bottom:40px;
+font-size:30px;
+font-weight:700;
+margin-top:60px;
+margin-bottom:40px;
 }
 
 .sidebar ul{
-    list-style:none;
-    padding:0;
+list-style:none;
 }
 
 .sidebar li{
-    margin-bottom:20px;
+margin-bottom:20px;
 }
 
 .sidebar a{
-    color:white;
-    text-decoration:none;
-    font-size:22px;
+color:white;
+text-decoration:none;
+font-size:18px;
 }
 
 /* MAIN */
@@ -81,6 +84,31 @@ padding:90px 25px;
 max-width:1300px;
 margin:auto;
 }
+    <section id="musicSection" style="display:none;">
+
+    <div class="player-container">
+
+        <img id="albumCover" src="album/cover1.JPG">
+
+        <h2 id="songTitle">Song 1</h2>
+
+        <p class="artist">Troll Tunes</p>
+
+        <audio id="player" controls></audio>
+
+        <div class="controls">
+            <button onclick="previousSong()">⏮</button>
+            <button onclick="player.play()">▶</button>
+            <button onclick="nextSong()">⏭</button>
+        </div>
+
+        <a id="downloadBtn" download>
+            ⬇ Download
+        </a>
+
+    </div>
+
+</section>
 
 /* HERO */
 
@@ -229,19 +257,20 @@ font-size:38px;
 </head>
 <body>
 
-<button id="menuBtn" class="menu-btn">☰</button>
+<button class="menu-btn" id="menuBtn">☰</button>
 
-<div id="sidebar" class="sidebar">
-
+<div class="sidebar" id="sidebar">
     <div class="logo">TROLL TUNES</div>
 
     <ul>
         <li><a href="index.html">Home</a></li>
+
         <li><a href="music.html">Music</a></li>
-        <li><a href="nocopyrightmusic.html">No Copyright Music</a></li>
+
+        <li><a href="nocopyright.html">No Copyright Music</a></li>
+
         <li><a href="backgroundmusic.html">Background Music</a></li>
     </ul>
-
 </div>
 
 <div class="main">
