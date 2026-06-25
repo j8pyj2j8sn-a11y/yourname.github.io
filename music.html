@@ -174,11 +174,60 @@ background-position:300% 50%;
     position:relative;
     width:100%;
     border-radius:38px;
-    overflow:hidden;
+    overflow:visible;
+}
+
+/* Premium RGB Glow */
+.player::before{
+    content:"";
+    position:absolute;
+    inset:-3px;
+
+    border-radius:42px;
+
+    background:linear-gradient(
+        90deg,
+        #ff006e,
+        #8338ec,
+        #3a86ff,
+        #00f5d4,
+        #ffbe0b,
+        #ff006e
+    );
+
+    background-size:400% 400%;
+
+    animation:rgbFlow 8s linear infinite;
+
+    filter:blur(18px);
+    opacity:.8;
+
+    z-index:0;
+}
+
+/* Extra soft ambient glow */
+.player::after{
+    content:"";
+    position:absolute;
+    inset:-25px;
+
+    border-radius:60px;
+
+    background:radial-gradient(
+        circle,
+        rgba(255,255,255,.15),
+        transparent 70%
+    );
+
+    filter:blur(30px);
+
+    z-index:0;
+    pointer-events:none;
 }
 
 .player-inner{
     position:relative;
+    z-index:2;
 
     display:flex;
     align-items:center;
@@ -210,7 +259,6 @@ background-position:300% 50%;
 .player-inner::before{
     content:"";
     position:absolute;
-
     top:0;
     left:0;
     right:0;
@@ -226,7 +274,7 @@ background-position:300% 50%;
     pointer-events:none;
 }
 
-/* Glass shine */
+/* Glass shine blob */
 .player-inner::after{
     content:"";
     position:absolute;
@@ -243,6 +291,18 @@ background-position:300% 50%;
     border-radius:50%;
 
     pointer-events:none;
+}
+
+@keyframes rgbFlow{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
 }
 /* SONG INFO */
 
