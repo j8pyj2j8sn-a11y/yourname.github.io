@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Troll Tunes</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+:root{
+--accent:#00ffff;
+}
+
+body{
+min-height:100vh;
+background:#050505;
+color:white;
+overflow-x:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+.bg-glow{
+position:fixed;
+inset:0;
+z-index:-2;
+
+background:
+radial-gradient(
+circle at center,
+rgba(0,255,255,.25),
+rgba(255,0,255,.15) 35%,
+#050505 75%
+);
+
+transition:1s ease;
+}
+
+body::after{
+content:"";
+position:fixed;
+inset:0;
+z-index:-1;
+
+background:
+radial-gradient(
+circle,
+transparent 40%,
+rgba(0,0,0,.4) 75%,
+rgba(0,0,0,.9) 100%
+);
+}
+
+.wrapper{
+width:min(95vw,1400px);
+padding:20px;
+}
+
+/* LOGO */
+
+.logo{
+text-align:center;
+font-size:clamp(28px,4vw,58px);
+font-weight:700;
+letter-spacing:10px;
+margin-bottom:20px;
+}
+
+/* ===========================
+   FAN CAROUSEL
+=========================== */
+
+.carousel{
+position:relative;
+height:clamp(260px,50vw,520px);
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+perspective:1800px;
+}
+
+.cover-track{
+position:relative;
+width:100%;
+height:100%;
+}
+
+.album-card{
+position:absolute;
+top:50%;
+left:50%;
+
+width:clamp(140px,18vw,280px);
+height:clamp(190px,25vw,380px);
+
+border-radius:28px;
+overflow:hidden;
+
+transform-style:preserve-3d;
+
+background:
+linear-gradient(#0000,#0000) padding-box,
+linear-gradient(
+90deg,
+#ff0080,
+#00ffff,
+#00ff66,
+#ffee00,
+#ff0080
+) border-box;
+
+border:3px solid transparent;
+
+background-size:300% 300%;
+
+animation:rgbBorder 8s linear infinite;
+
+transition:
+transform 1s cubic-bezier(.22,1,.36,1),
+opacity 1s ease,
+filter 1s ease,
+box-shadow 1s ease;
+
+box-shadow:
+0 0 20px rgba(255,255,255,.15),
+0 0 50px rgba(255,0,255,.15);
+}
+
+.album-card img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+
+.album-card.active{
+box-shadow:
+0 0 25px rgba(255,255,255,.25),
+0 0 70px rgba(0,255,255,.35);
+}
+
+@keyframes rgbBorder{
+
+0%{
+background-position:0% 50%;
+}
+
+100%{
+background-position:300% 50%;
+}
+
+}
+
+/* ===========================
+   PLAYER
+=========================== */
+
+.player{
+margin-top:20px;
+position:relative;
+width:100%;
+border-radius:40px;
+overflow:hidden;
+}
+
+.player-rgb{
+position:absolute;
+inset:-2px;
+
+background:
+linear-gradient(
+90deg,
+#ff0080,
+#00ffff,
+#00ff66,
+#ffee00,
+#ff0080
+);
+
+background-size:300% 300%;
+animation:rgbBorder 8s linear infinite;
+
+filter:blur(18px);
+opacity:.8;
+}
+
+.player-inner{
+position:relative;
+
+display:flex;
+align-items:center;
+gap:25px;
+
+padding:20px 25px;
+
+border-radius:40px;
+
+background:
+linear-gradient(
+135deg,
+rgba(255,255,255,.15),
+rgba(255,255,255,.05)
+);
+
+backdrop-filter:blur(30px);
+-webkit-backdrop-filter:blur(30px);
+
+border:1px solid rgba(255,255,255,.15);
+}
+
+/* SONG INFO */
+
+.song-info{
+display:flex;
+align-items:center;
+gap:15px;
+min-width:250px;
+}
+
+.mini-cover{
+width:70px;
+height:70px;
+border-radius:18px;
+object-fit:cover;
+}
+
+.song-text h3{
+font-size:22px;
+font-weight:600;
+}
+
+.song-text p{
+font-size:14px;
+opacity:.8;
+}
+
+/* PROGRESS */
+
+.progress-section{
+flex:1;
+}
+
+.time-row{
+display:flex;
+justify-content:space-between;
+font-size:13px;
+margin-bottom:8px;
+opacity:.8;
+}
+
+#progress{
+width:100%;
+height:8px;
+
+appearance:none;
+-webkit-appearance:none;
+
+border-radius:30px;
+
+background:
+rgba(255,255,255,.15);
+
+cursor:pointer;
+}
+
+#progress::-webkit-slider-thumb{
+
+-webkit-appearance:none;
+
+width:22px;
+height:22px;
+
+border-radius:50%;
+
+background:white;
+
+box-shadow:
+0 0 15px #00ffff,
+0 0 25px #ff00ff;
+}
+
+/* CONTROLS */
+
+.controls{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.icon-btn{
+border:none;
+background:none;
+color:white;
+
+font-size:28px;
+cursor:pointer;
+
+transition:.3s;
+}
+
+.icon-btn:hover{
+transform:scale(1.15);
+}
+
+.play-btn{
+width:72px;
+height:72px;
+
+border-radius:50%;
+
+border:2px solid rgba(255,255,255,.25);
+
+background:
+rgba(255,255,255,.08);
+
+color:white;
+
+font-size:30px;
+
+cursor:pointer;
+
+backdrop-filter:blur(15px);
+
+transition:.3s;
+}
+
+.play-btn:hover{
+transform:scale(1.05);
+}
+
+/* DOWNLOAD */
+
+.download-btn{
+padding:12px 22px;
+
+border-radius:20px;
+
+text-decoration:none;
+color:white;
+
+font-weight:600;
+
+border:1px solid rgba(255,255,255,.2);
+
+background:
+rgba(255,255,255,.08);
+
+transition:.3s;
+}
+
+.download-btn:hover{
+transform:translateY(-2px);
+
+box-shadow:
+0 0 20px rgba(0,255,255,.35);
+}
+
+/* ===========================
+   TABLET
+=========================== */
+
+@media(max-width:900px){
+
+.player-inner{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.song-info{
+width:100%;
+justify-content:center;
+}
+
+.progress-section{
+width:100%;
+}
+
+}
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:600px){
+
+.logo{
+letter-spacing:4px;
+}
+
+.song-info{
+flex-direction:column;
+text-align:center;
+}
+
+.controls{
+width:100%;
+justify-content:center;
+}
+
+.download-btn{
+width:100%;
+text-align:center;
+}
+
+.play-btn{
+width:65px;
+height:65px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg-glow"></div>
+
+<div class="wrapper">
+
+<!-- LOGO -->
+
+<h1 class="logo">
+TROLL TUNES
+</h1>
+
+<!-- FAN CAROUSEL -->
+
+<div class="carousel">
+
+<div id="coverTrack" class="cover-track">
+
+<!-- Covers generated by JS -->
+
+</div>
+
+</div>
+
+<!-- PLAYER -->
+
+<div class="player">
+
+<div class="player-rgb"></div>
+
+<div class="player-inner">
+
+<!-- SONG INFO -->
+
+<div class="song-info">
+
+<img
+id="miniCover"
+class="mini-cover"
+src="lunar.JPG"
+alt="Album Cover">
+
+<div class="song-text">
+
+<h3 id="songTitle">
+Lunar
+</h3>
+
+<p>
+Troll Tunes
+</p>
+
+</div>
+
+</div>
+
+<!-- PROGRESS -->
+
+<div class="progress-section">
+
+<div class="time-row">
+
+<span id="currentTime">
+0:00
+</span>
+
+<span id="duration">
+0:00
+</span>
+
+</div>
+
+<input
+type="range"
+id="progress"
+value="0"
+min="0"
+max="100">
+
+</div>
+
+<!-- CONTROLS -->
+
+<div class="controls">
+
+<button
+class="icon-btn"
+onclick="prevSong()">
+
+⏮
+
+</button>
+
+<button
+id="playBtn"
+class="play-btn"
+onclick="togglePlay()">
+
+▶
+
+</button>
+
+<button
+class="icon-btn"
+onclick="nextSong()">
+
+⏭
+
+</button>
+
+</div>
+
+<!-- DOWNLOAD -->
+
+<a
+id="downloadBtn"
+class="download-btn"
+download>
+
+DOWNLOAD
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+
+const songs = [
+
+{
+title:"Lunar",
+file:"Lunar.mp3",
+cover:"lunar.JPG",
+color:"#6ec1ff"
+},
+
+{
+title:"Say It",
+file:"Say it.mp3",
+cover:"sayit.JPG",
+color:"#ff4fd8"
+},
+
+{
+title:"Deep End",
+file:"Deep end.mp3",
+cover:"deepend.JPG",
+color:"#ffd84d"
+},
+
+{
+title:"Wonder",
+file:"Wonder.mp3",
+cover:"wonder.JPG",
+color:"#8a7dff"
+},
+
+{
+title:"Dream",
+file:"Dream.mp3",
+cover:"dream.JPG",
+color:"#ff6b9a"
+}
+
+];
+
+let currentSong = 0;
+
+const audio = document.getElementById("audio");
+const carousel = document.getElementById("coverTrack");
+const songTitle = document.getElementById("songTitle");
+const miniCover = document.getElementById("miniCover");
+const progress = document.getElementById("progress");
+const downloadBtn = document.getElementById("downloadBtn");
+const playBtn = document.getElementById("playBtn");
+
+const currentTimeEl =
+document.getElementById("currentTime");
+
+const durationEl =
+document.getElementById("duration");
+
+const bgGlow =
+document.querySelector(".bg-glow");
+
+/* =====================
+   FAN CAROUSEL
+===================== */
+
+function renderCarousel(){
+
+carousel.innerHTML = "";
+
+songs.forEach((song,index)=>{
+
+const card = document.createElement("div");
+
+card.className = "album-card";
+
+let offset = index - currentSong;
+
+if(offset > 2) offset -= songs.length;
+if(offset < -2) offset += songs.length;
+
+if(offset === 0){
+
+card.classList.add("active");
+
+card.style.transform =
+"translate(-50%,-50%) scale(1)";
+
+card.style.opacity = "1";
+card.style.zIndex = "5";
+
+}
+
+else if(offset === -1){
+
+card.style.transform =
+"translate(calc(-50% - 180px),-35%) rotateY(35deg) scale(.82)";
+
+card.style.opacity = ".85";
+card.style.zIndex = "4";
+
+}
+
+else if(offset === 1){
+
+card.style.transform =
+"translate(calc(-50% + 180px),-35%) rotateY(-35deg) scale(.82)";
+
+card.style.opacity = ".85";
+card.style.zIndex = "4";
+
+}
+
+else if(offset === -2){
+
+card.style.transform =
+"translate(calc(-50% - 320px),-15%) rotateY(50deg) scale(.65)";
+
+card.style.opacity = ".4";
+card.style.zIndex = "3";
+
+}
+
+else if(offset === 2){
+
+card.style.transform =
+"translate(calc(-50% + 320px),-15%) rotateY(-50deg) scale(.65)";
+
+card.style.opacity = ".4";
+card.style.zIndex = "3";
+
+}
+
+card.innerHTML =
+`<img src="${song.cover}" alt="${song.title}">`;
+
+card.addEventListener("click",()=>{
+
+currentSong = index;
+
+loadSong(currentSong);
+
+audio.play();
+
+});
+
+carousel.appendChild(card);
+
+});
+
+}
+
+/* =====================
+   LOAD SONG
+===================== */
+
+function loadSong(index){
+
+audio.src =
+songs[index].file;
+
+songTitle.textContent =
+songs[index].title;
+
+miniCover.src =
+songs[index].cover;
+
+downloadBtn.href =
+songs[index].file;
+
+/* Background Glow */
+
+bgGlow.style.background =
+
+`radial-gradient(
+circle at center,
+${songs[index].color}55,
+${songs[index].color}22 35%,
+#050505 75%
+)`;
+
+/* Player Glow */
+
+document.documentElement.style.setProperty(
+"--accent",
+songs[index].color
+);
+
+renderCarousel();
+
+}
+
+/* =====================
+   PLAY / PAUSE
+===================== */
+
+function togglePlay(){
+
+if(audio.paused){
+
+audio.play();
+
+}else{
+
+audio.pause();
+
+}
+
+}
+
+audio.addEventListener("play",()=>{
+
+playBtn.innerHTML = "❚❚";
+
+});
+
+audio.addEventListener("pause",()=>{
+
+playBtn.innerHTML = "▶";
+
+});
+
+/* =====================
+   NEXT / PREVIOUS
+===================== */
+
+function nextSong(){
+
+currentSong++;
+
+if(currentSong >= songs.length){
+
+currentSong = 0;
+
+}
+
+loadSong(currentSong);
+
+audio.play();
+
+}
+
+function prevSong(){
+
+currentSong--;
+
+if(currentSong < 0){
+
+currentSong = songs.length - 1;
+
+}
+
+loadSong(currentSong);
+
+audio.play();
+
+}
+
+/* =====================
+   PROGRESS
+===================== */
+
+audio.addEventListener("timeupdate",()=>{
+
+progress.value =
+
+(audio.currentTime /
+audio.duration) * 100 || 0;
+
+currentTimeEl.textContent =
+
+formatTime(audio.currentTime);
+
+durationEl.textContent =
+
+formatTime(audio.duration);
+
+});
+
+progress.addEventListener("input",()=>{
+
+audio.currentTime =
+
+(progress.value / 100) *
+audio.duration;
+
+});
+
+/* =====================
+   AUTO NEXT
+===================== */
+
+audio.addEventListener("ended",()=>{
+
+nextSong();
+
+});
+
+/* =====================
+   TIME FORMAT
+===================== */
+
+function formatTime(time){
+
+if(isNaN(time)) return "0:00";
+
+const minutes =
+
+Math.floor(time / 60);
+
+const seconds =
+
+Math.floor(time % 60)
+.toString()
+.padStart(2,"0");
+
+return `${minutes}:${seconds}`;
+
+}
+
+/* =====================
+   KEYBOARD SUPPORT
+===================== */
+
+document.addEventListener("keydown",(e)=>{
+
+if(e.code === "Space"){
+
+e.preventDefault();
+
+togglePlay();
+
+}
+
+if(e.code === "ArrowRight"){
+
+nextSong();
+
+}
+
+if(e.code === "ArrowLeft"){
+
+prevSong();
+
+}
+
+});
+
+/* =====================
+   START
+===================== */
+
+loadSong(currentSong);
+
+</script>
+
+</body>
+</html>
